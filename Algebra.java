@@ -20,12 +20,20 @@ public class Algebra {
    		System.out.println(mod(120,6));  // 120 % 6    
    		System.out.println(sqrt(36));
 		System.out.println(sqrt(263169));
-   		System.out.println(sqrt(76123));
+   		System.out.println(sqrt(76123)); 
 	}  
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
 		int sum = x1 ;
+
+		if ( x2 < 0 ){
+			for (int i = 0 ; i > x2 ; i --){
+				sum-- ;
+			}
+			return sum;
+		}
+
 		for (int i = 0 ; i < x2 ; i ++){
 			sum++ ;
 		}
@@ -35,6 +43,14 @@ public class Algebra {
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
 		int sum = x1 ; 
+
+		if ( x2 < 0 ){
+			for (int i = 0 ; i > x2 ; i --){
+				sum++ ;
+			}
+			return sum;
+		}
+
 		for (int i = 0 ; i < x2 ; i ++){
 			sum-- ;
 		}
@@ -43,7 +59,26 @@ public class Algebra {
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		int multiplie = 0;
+		int multiplie = 0, temp;
+
+		if ( x1 > 0 && x2 < 0 ) {
+			temp = x1;
+			x1 = x2;
+			x2 = temp;
+		} else if ( x1 < 0 && x2 < 0 ){
+			temp = x1;
+			for (int i = 0 ; i < 2 ; i++ ){
+				temp = minus(temp, x1);
+			}
+			x1 = temp;
+			temp = x2;
+
+			for (int j = 0 ; j < 2 ; j++ ){
+				temp = minus(temp, x2);
+			}
+			x2 = temp;
+		}
+
 		for (int i = 0 ; i < x2 ; i++ ){
 			multiplie = plus(multiplie, x1);
 		}
