@@ -25,43 +25,100 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int sum = x1 ;
+		for (int i = 0 ; i < x2 ; i ++){
+			sum++ ;
+		}
+		return sum;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int sum = x1 ; 
+		for (int i = 0 ; i < x2 ; i ++){
+			sum-- ;
+		}
+		return sum;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int multiplie = 0;
+		for (int i = 0 ; i < x2 ; i++ ){
+			multiplie = plus(multiplie, x1);
+		}
+		return multiplie;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int powerOf = x;
+		if ( n == 0 ) return 1;
+
+		if (n == 1 ) return x ;
+
+		for (int i = 2 ; i <= n ; i++ ){
+			powerOf = times(powerOf, x);
+		}
+		return powerOf;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int divide = 0, sign = 1, calc;
+
+		if (x2 == 0) return -1;
+		if (x1 == 0) return 0;
+
+		if ( x1 < 0 && x2 > 0 ) {
+			sign = -1;
+			x1 = times(x1, -1);
+		} else if ( x2 < 0 && x1 > 0 ) {
+			sign = -1;
+			x2 = times(x2, -1);
+		} else if ( x2 < 0 && x1 < 0 ) {
+			sign = 1;
+			x1 = times(x1, -1);
+			x2 = times(x2, -1);
+		}
+
+		if ( x1 > x2 ) {
+			for ( calc = 0 ; plus(calc, x2) <= x1 ; calc = plus(calc, x2)){
+				divide ++;
+			}
+		} else {
+			return 0;
+		}
+		divide = times(divide, sign);
+		return divide;
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int mode, calc;
+		if ( x2 == 0 ) return -1;
+		if ( x1 == 0 ) return 0;
+
+		if( x1 < x2 ) {
+			return x1;
+		} else {
+			calc = div(x1, x2);
+			calc = times(calc, x2);
+			mode = minus(x1, calc);
+		}
+
+		return mode;
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		if ( x == 0 ) return 0;
+		else if ( x < 0 ) return -1;
+		else if ( x == 1 ) return 1;
+
+		for ( int i = 2; i < x ; i++ ){
+			if ( pow(i, 2) == x) return i;
+		}
+		return -1;
 	}	  	  
 }
