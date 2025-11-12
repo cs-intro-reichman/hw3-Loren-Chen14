@@ -21,6 +21,7 @@ public class Algebra {
    		System.out.println(sqrt(36));
 		System.out.println(sqrt(263169));
    		System.out.println(sqrt(76123)); 
+		System.out.println(sqrt(10));
 	}  
 
 	// Returns x1 + x2
@@ -102,7 +103,6 @@ public class Algebra {
 	public static int div(int x1, int x2) {
 		int divide = 0, sign = 1, calc;
 
-		if (x2 == 0) return -1;
 		if (x1 == 0) return 0;
 
 		if ( x1 < 0 && x2 > 0 ) {
@@ -147,12 +147,13 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
+		int epsilon = 1;
 		if ( x == 0 ) return 0;
 		else if ( x < 0 ) return -1;
 		else if ( x == 1 ) return 1;
 
 		for ( int i = 2; i < x ; i++ ){
-			if ( pow(i, 2) == x) return i;
+			if ( (pow(i, 2) >= (x - epsilon) ) && (pow(i, 2) <= (x + epsilon) ) ) return i;
 		}
 		return -1;
 	}	  	  
