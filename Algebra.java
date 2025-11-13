@@ -147,13 +147,12 @@ public class Algebra {
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		int epsilon = 1;
 		if ( x == 0 ) return 0;
 		else if ( x < 0 ) return -1;
 		else if ( x == 1 ) return 1;
 
 		for ( int i = 2; i < x ; i++ ){
-			if ( (pow(i, 2) >= (x - epsilon) ) && (pow(i, 2) <= (x + epsilon) ) ) return i;
+			if ( (pow(i, 2) <= x ) && (pow(plus(i, 1), 2) > x  ) ) return i;
 		}
 		return -1;
 	}	  	  
