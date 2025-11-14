@@ -55,7 +55,8 @@ public class Anagram {
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
 		String marks = "!?;:" , newStr = "";
-		str = str.toLowerCase();
+		str = str.toLowerCase();						// convert to lower-case
+		// remove punctuation marks
 		for (int i = 0; i < str.length() ; i++){
 			char letter = str.charAt(i);
 			if(marks.indexOf(letter) == -1 ){
@@ -68,17 +69,18 @@ public class Anagram {
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		int range = str.length() - 1;
-		double random = range * Math.random();
-		int randomIndex = (int) random;
-		String newStr = "" ;
+		int range = str.length() - 1;			// the range of possible indexes
+		double random = range * Math.random();	// a random double between 0 and range
+		int randomIndex = (int) random;		    // the inteager part of random
+		String newStr = "" ;					// the random anagram to be returned
 
+		// build the random anagram one character at a time
 		while (!(str.equals(""))){
 			newStr += str.charAt(randomIndex);
-			str = str.substring(0, randomIndex) + str.substring(randomIndex + 1, range + 1);
-			range = str.length() - 1;
-			random = range * Math.random();
-			randomIndex = (int) random;
+			str = str.substring(0, randomIndex) + str.substring(randomIndex + 1, range + 1); // remove the used character from str
+			range = str.length() - 1;  				// update the range of possible indexes
+			random = range * Math.random();			// a new random double between 0 and "new" range
+			randomIndex = (int) random;		   	    // the inteager part of new random
 		}
 
 		return newStr;
