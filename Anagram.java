@@ -28,22 +28,59 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
+		boolean isAnagram = true;
+		str1 = preProcess(str1);
+		str2 = preProcess(str2);
+
+		for (int i = 0 ; i < str1.length() && isAnagram; i++){
+			char letterOne = str1.charAt(i);
+
+			if ( letterOne != ' ' ){
+				isAnagram = false;
+				for (int j = 0; j < str2.length() && !isAnagram; j++){
+				char letterTwo = str2.charAt(j);
+				if ( letterTwo != ' '){
+					if ( letterOne == letterTwo ){
+						isAnagram = true;
+					}
+				}
+				}
+			}
+		}
+		return isAnagram;
 	}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		String marks = "!?;:" , newStr = "";
+		str = str.toLowerCase();
+		for (int i = 0; i < str.length() ; i++){
+			char letter = str.charAt(i);
+			if(marks.indexOf(letter) == -1 ){
+				newStr += letter; 
+			}
+		}
+		return newStr;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		int range = str.length() - 1;
+		double random = range * Math.random();
+		int randomIndex = (int) random;
+		String newStr = "" ;
+
+		while (!(str.equals(""))){
+			newStr += str.charAt(randomIndex);
+			str = str.substring(0, randomIndex) + str.substring(randomIndex + 1, range + 1);
+			range = str.length() - 1;
+			random = range * Math.random();
+			randomIndex = (int) random;
+		}
+
+		return newStr;
 	}
 }
