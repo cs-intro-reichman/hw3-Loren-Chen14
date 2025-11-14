@@ -49,10 +49,13 @@ public class LoanCalc {
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
 		iterationCounter = 0;
 		double g = loan / n; // initial guess
-		while ( Math.abs( endBalance(loan, rate, n, g) ) >= epsilon ){
-			g = g + epsilon;
-			iterationCounter ++;
-		}
+		while (g <= loan) {        // upper bound: payment can't exceed loan
+        	if (Math.abs(endBalance(loan, rate, n, g)) < epsilon) {
+           		 return g;
+        	}
+        	g += epsilon;
+        	iterationCounter++;
+   		 }
 		return g;
     }
     
