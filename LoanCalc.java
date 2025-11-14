@@ -50,7 +50,7 @@ public class LoanCalc {
 		iterationCounter = 0;
 		double g = loan / n; // initial guess
 		while (g <= loan) {        // upper bound: payment can't exceed loan
-        	if (Math.abs(endBalance(loan, rate, n, g)) < epsilon) {
+        	if (Math.abs(endBalance(loan, rate, n, g) - loan) <= epsilon) {
            		 return g;
         	}
         	g += epsilon;
